@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-      
+        'flamify': "url('./assets/BLUEFLAMES.jpg')",
       }
     }
   },

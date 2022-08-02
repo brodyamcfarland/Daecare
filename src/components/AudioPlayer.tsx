@@ -80,7 +80,7 @@ const AudioPlayer = () => {
     }
 
     const nextSong = () => {
-        const index = songs.findIndex(x=>x.title == currentTrack.title);
+        const index = songs.findIndex(x => x.title == currentTrack.title);
         if (index == songs.length - 1)
         {
         progressBar.current.value = 0;
@@ -105,7 +105,7 @@ const AudioPlayer = () => {
     }
 
   return (
-    <div className='mt-3 pt-4 bg-gradient-to-b from-gray-900 to-[#000000] max-w-[30rem] items-center justify-center m-auto border-[1px] rounded-2xl'>
+    <div className='mt-3 pt-4 bg-flamify bg-cover max-w-[30rem] items-center justify-center m-auto border-[1px] rounded-2xl'>
         <audio ref={audioPlayer} src={currentTrack.mp3} preload="metadata"></audio>
         <div className='flex flex-row items-center justify-center gap-8'>
             <button className='text-[10px]' onClick={prevSong}><BiSkipPrevious className='text-[2.2rem] border-[3px] border-gray-900 bg-black rounded-full hover:bg-gray-700 duration-700'/> Back</button>
@@ -129,6 +129,7 @@ const AudioPlayer = () => {
         <div className='text-[15px]'>{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
         <div className='pt-4'>{currentTrack.title}</div>
         <div>{currentTrack.artist}</div>
+        <img className='max-w-[20rem] max-h-[15rem] m-auto mt-3 border object-contain rounded-xl' src={currentTrack.artwork}/>
         <div className='flex flex-row gap-3 justify-left pl-10 ml-10 text-[.7rem] pt-10'>
             <span className='min-w-[3rem] '>Song</span>
             <span className='min-w-[5rem] pl-12'>Album</span>
@@ -137,7 +138,7 @@ const AudioPlayer = () => {
             {songs.map((song, index) => (
                     <div className='bg-[#13314d] hover:bg-[#0a1a29] duration-500 hover:opacity-100 opacity-70 shadow-inset justify-left flex flex-row gap-5 p-2 border-[1px] rounded-xl mb-3 hover:cursor-pointer' key={index}
                                     onClick={() => setCurrentTrack(songs[index])}>
-                        <ul className='min-w-[3rem]'>{songs[index].artwork}</ul>
+                        <img className='max-w-7 max-h-7' src={songs[index].artwork}/>
                         <ul className='min-w-[5rem]'>{songs[index].title}</ul>
                         <ul>{songs[index].album}</ul>
                     </div>
