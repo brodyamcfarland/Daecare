@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'flamify': "url('./assets/BLUEFLAMES.jpg')",
+        'motorola': "url('./assets/Motorola.png')",
       }
     }
   },

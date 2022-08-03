@@ -1,42 +1,71 @@
-import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
+import { addDoc, collection, serverTimestamp, onSnapshot, query, orderBy } from "@firebase/firestore";
 import { db } from "../db/Firebase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ChatMessages from "./ChatMessages";
+import { ImArrowRight2 } from 'react-icons/im';
 
 const ChatBox = () => {
     //States
     const [input, setInput] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
     const [name, setName] = useState<string>('');
+    const [posts, setPosts] = useState<Array<any>>([]);
  
     //Send Post
     const sendPost = async (event: any) => {
-        event.preventDefault();
-        if (loading) return;
-        setLoading(true);
-        const docRef = await addDoc(collection(db, "messages"), {
-            Name: name,
-            text: input,
-            timestamp: serverTimestamp(),
+        if (input.length > 0) {
+          event.preventDefault();
+          resetInputs();
+          await addDoc(collection(db, "messages"), {
+              Name: name,
+              text: input,
+              timestamp: serverTimestamp(),
+          })
         }
-    )};
+    };
+
+    //clear inputs
+    const resetInputs = () => {
+      setInput('');
+      setName('');
+    }
+
+    //UseEffect
+    useEffect(
+      () =>
+        onSnapshot(
+          query(collection(db, "messages"), orderBy("timestamp", "desc")),
+          (snapshot:any) => {
+            setPosts(snapshot.docs);
+          }
+          
+        ),
+      [db]
+    );
 
   return (
-    <div className="mt-4 max-w-[30rem] min-h-[40rem] m-auto border rounded-2xl">
-        <header className="pt-2 pb-2 border-b-[1px]">Message Board</header>
-        <div className="border-b-[1px] min-h-[30rem]">Messages will show here</div>
-        <form className="flex p-3">
-            <input className="max-h-[2rem] rounded-xl bg-gray-800 pl-2 mr-1"
+    <div className="relative mt-4 max-w-[23.3rem] min-h-[28rem] m-auto rounded-2xl top-[17.5rem] right-[1px]">
+        <div className="border-b-[1px] h-[24rem] max-h-[30rem] overflow-y-auto no-scrollbar">
+        {posts.map((post) => (
+            <>
+              <ChatMessages
+                key={post.postId}
+                post={post.data()}/>
+            </>
+        ))}
+        </div>
+        <div className="flex flex-row p-3 min-h-[3rem] rounded-2xl">
+            <input className="bg-gray-800 pl-2 max-w-[6.5rem] border active:border duration-500 rounded-tl-2xl rounded-bl-2xl opacity-70 focus:opacity-100"
                    placeholder="Enter Name"
                    onChange={(e)=> setName(e.target.value)}/>
-            <textarea className="bg-gray-900 min-h-[6rem] flex-grow rounded-2xl active:border duration-500 pl-2"
+            <input className="bg-gray-900 max-h-[6rem] flex-grow active:border duration-500 pl-2 border opacity-70 focus:opacity-100"
                       value={input}
                       onChange={(e)=> setInput(e.target.value)}
-                      placeholder='Say something to Davey'
+                      placeholder='Say something...'
                       maxLength={180}/>
             <br/>
-            <button className="rounded-full border ml-3 pb-1.5 h-7 w-7 hover:bg-green-800 duration-500"
-                    onClick={sendPost}> + </button>
-        </form>
+            <button className="h-10 w-10 hover:bg-green-800 duration-500 border-[1px] active:border pr-1 rounded-tr-2xl rounded-br-2xl pl-2"
+                    onClick={sendPost}><ImArrowRight2 className=""/></button>
+        </div>
     </div>
   )
 }
