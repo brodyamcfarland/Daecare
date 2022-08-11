@@ -6,8 +6,10 @@ module.exports = {
       backgroundImage: {
         'flamify': "url('./assets/BLUEFLAMES.jpg')",
         'motorola': "url('./assets/Motorola.png')",
+        'desktop' : "url('./assets/OldDesktop.png')",
+        'ipod' : "url('./assets/ipod.png')",
       }
     }
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 }

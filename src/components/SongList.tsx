@@ -4,6 +4,7 @@ import TestArtwork from '../assets/TESTPIC.JPG';
 
 export const songs = [
     {
+        id: 1,
         mp3: Test,
         title: 'Ligma',
         artist: 'Daecare',
@@ -11,6 +12,7 @@ export const songs = [
         artwork: TestArtwork,
     },
     {
+        id: 2,
         mp3: Betta,
         title: 'Betta',
         artist: 'Daecare',
@@ -18,6 +20,7 @@ export const songs = [
         artwork: TestArtwork,
     },
     {
+        id: 3,
         mp3: Test,
         title: 'Rekt',
         artist: 'Daecare',
@@ -25,6 +28,7 @@ export const songs = [
         artwork: TestArtwork,
     },
     {
+        id: 4,
         mp3: Betta,
         title: 'BOFA',
         artist: 'Daecare',
@@ -32,6 +36,7 @@ export const songs = [
         artwork: TestArtwork,
     },
     {
+        id: 5,
         mp3: Test,
         title: 'Ipsum',
         artist: 'Daecare',
@@ -39,6 +44,7 @@ export const songs = [
         artwork: TestArtwork,
     },
     {
+        id: 6,
         mp3: Betta,
         title: 'Beans',
         artist: 'Daecare',

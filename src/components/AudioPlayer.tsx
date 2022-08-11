@@ -1,8 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
-import { AiFillFastBackward, AiFillFastForward } from 'react-icons/ai';
-import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import {songs} from '../components/SongList';
 
 const AudioPlayer = () => {
@@ -11,6 +7,7 @@ const AudioPlayer = () => {
     const [duration, setDuration] = useState<number>(0); //below slider
     const [currentTime, setCurrentTime] = useState<number>(0); //above slider
     const [currentTrack, setCurrentTrack] = useState<any>(songs[0]);
+    const [menuToggle, setMenuToggle] = useState<boolean>(false);
 
     // references
     const audioPlayer = useRef<any>();   // reference our audio component
@@ -26,7 +23,7 @@ const AudioPlayer = () => {
     },[currentTrack])
 
     useEffect(() => {
-        if (audioPlayer.current !== undefined, progressBar.current !== undefined) {
+        if (audioPlayer.current !== undefined && null, progressBar.current !== undefined && null) {
         const seconds = Math.floor(audioPlayer.current.duration);
         setDuration(seconds);
         progressBar.current.max = seconds;
@@ -69,16 +66,6 @@ const AudioPlayer = () => {
         setCurrentTime(progressBar.current.value);
     }
 
-    const backTen = () => {
-        progressBar.current.value = Number(progressBar.current.value) - 10;
-        changeRange();
-    }
-
-    const forwardTen = () => {
-        progressBar.current.value = Number(progressBar.current.value) + 10;
-        changeRange();
-    }
-
     const nextSong = () => {
         const index = songs.findIndex(x => x.title == currentTrack.title);
         if (index == songs.length - 1)
@@ -104,47 +91,49 @@ const AudioPlayer = () => {
         changeRange();
     }
 
+    const toggleMenu = () => {
+        setMenuToggle(!menuToggle);
+    }
+
   return (
-    <div className='mt-3 pt-4 bg-flamify bg-cover max-w-[30rem] items-center justify-center m-auto border-[1px] rounded-2xl'>
-        <audio ref={audioPlayer} src={currentTrack.mp3} preload="metadata"></audio>
-        <div className='flex flex-row items-center justify-center gap-8'>
-            <button className='text-[10px]' onClick={prevSong}><BiSkipPrevious className='text-[2.2rem] border-[3px] border-gray-900 bg-black rounded-full hover:bg-gray-700 duration-700'/> Back</button>
-            <button className='text-[10px]' onClick={backTen}><AiFillFastBackward className='text-[2.5rem] border-[3px] border-gray-900 bg-black rounded-full hover:bg-gray-700 duration-700'/> Reverse</button>
-            <button onClick={togglePlayPause} className='p-4 text-[2rem] rounded-full border-[3px] border-gray-900 bg-black hover:bg-gray-700 duration-700'>
-            {isPlaying ? <FaPause className='fill-red-600'/> : <FaPlay className='fill-green-600' />}
-            </button>
-            <button className='text-[10px]' onClick={forwardTen}><AiFillFastForward className='text-[2.5rem] border-[3px] border-gray-900 bg-black rounded-full hover:bg-gray-700 duration-700'/> Forward</button>
-            <button className='text-[10px]' onClick={nextSong}><BiSkipNext className='text-[2.2rem] border-[3px] border-gray-900 bg-black rounded-full hover:bg-gray-700 duration-700'/> Next</button>
-        </div>
-
-        {/* current time */}
-        <div className='text-[13px] text-gray-400 pt-4'>{calculateTime(currentTime)}</div>
-
-        {/* progress bar */}
-        <div>
-            <input type="range" step='0.001' className='bg-black' defaultValue="0" ref={progressBar} onChange={changeRange}/>
-        </div>
-
-        {/* duration */}
-        <div className='text-[15px]'>{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
-        <div className='pt-4'>{currentTrack.title}</div>
-        <div>{currentTrack.artist}</div>
-        <img className='max-w-[20rem] max-h-[15rem] m-auto mt-3 border object-contain rounded-xl' src={currentTrack.artwork}/>
-        <div className='flex flex-row gap-3 justify-left pl-10 ml-10 text-[.7rem] pt-10'>
-            <span className='min-w-[3rem] '>Song</span>
-            <span className='min-w-[5rem] pl-12'>Album</span>
-        </div>
-        <div className='p-3 text-left'>
-            {songs.map((song, index) => (
-                    <div className='bg-[#13314d] hover:bg-[#0a1a29] duration-500 hover:opacity-100 opacity-70 shadow-inset justify-left flex flex-row gap-5 p-2 border-[1px] rounded-xl mb-3 hover:cursor-pointer' key={index}
-                                    onClick={() => setCurrentTrack(songs[index])}>
-                        <img className='max-w-7 max-h-7' src={songs[index].artwork}/>
-                        <ul className='min-w-[5rem]'>{songs[index].title}</ul>
-                        <ul>{songs[index].album}</ul>
-                    </div>
-            ))}
+    <div className='bg-ipod bg-no-repeat bg-contain mt-3 pt-4 max-w-[30rem] h-[52.5rem] items-center justify-center m-auto rounded-2xl'>
+        <audio ref={audioPlayer} src={currentTrack.mp3} preload="metadata"/>
+        {(menuToggle) ? (
+            <div className='relative w-[25.5rem] h-[19.5rem] top-5 m-auto'>
+                <div className='flex flex-row gap-3 justify-left pl-[7rem] text-[.7rem]'>
+                    <span className='min-w-[3rem] '>Song</span>
+                    <span className='min-w-[5rem] pl-12'>Album</span>
+                </div>
+                <div className='text-left h-[18.2rem] overflow-y-auto no-scrollbar'>
+                    {songs.map((song, index) => (
+                        <div className='bg-[#13314d] hover:bg-[#0a1a29] w-[24rem] duration-500 mb-4 hover:opacity-100 opacity-70 shadow-inset justify-left flex flex-row gap-5 p-2 border-[1px] rounded-xl m-auto hover:cursor-pointer'
+                             key={song.id}
+                             onClick={() => setCurrentTrack(songs[index])}>
+                            <img className='max-w-7 max-h-7 rounded-lg' src={songs[index].artwork}/>
+                            <ul className='min-w-[5rem]'>{songs[index].title}</ul>
+                            <ul>{songs[index].album}</ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ) : (
+            <div className='relative w-[25.5rem] h-[19rem] top-8 m-auto'>
+                <img className='max-w-[16rem] max-h-[12rem] m-auto mt-2 object-contain rounded-xl' src={currentTrack.artwork}/>
+                <div className='pt-1'>{currentTrack.artist} - {currentTrack.title}</div>
+                <div className='text-[13px] text-gray-400 pt-1'>{calculateTime(currentTime)}</div>
+                <input type="range" step='0.001' className='bg-black' defaultValue="0" ref={progressBar} onChange={changeRange}/>
+            </div>
+        )}
+        <div className='w-[30rem] h-[24rem] mt-5'>
+            <div className='relative'>
+                <button className='absolute text-[10px] top-[10.7rem] left-[5.5rem] bg-[#00000023] p-12 rounded-full' onClick={prevSong}/>
+                <button onClick={togglePlayPause} className='absolute top-[17.4rem] right-[12rem] p-12 text-[2rem] rounded-full bg-[#00000023]'/>
+                <button className='absolute text-[10px] top-[10.7rem] right-[5.5rem] bg-[#00000023] p-12 rounded-full' onClick={nextSong}/>
+                <button onClick={toggleMenu} className='absolute top-[4.4rem] right-[12rem] p-12 text-[2rem] rounded-full bg-[#00000023]'/>                
+            </div>
         </div>
     </div>
+    
   )
 }
 
