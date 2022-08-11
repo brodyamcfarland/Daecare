@@ -126,10 +126,10 @@ const AudioPlayer = () => {
         )}
         <div className='w-[30rem] h-[24rem] mt-5'>
             <div className='relative'>
-                <button className='absolute text-[10px] top-[10.7rem] left-[5.5rem] bg-[#00000023] p-12 rounded-full' onClick={prevSong}/>
-                <button onClick={togglePlayPause} className='absolute top-[17.4rem] right-[12rem] p-12 text-[2rem] rounded-full bg-[#00000023]'/>
-                <button className='absolute text-[10px] top-[10.7rem] right-[5.5rem] bg-[#00000023] p-12 rounded-full' onClick={nextSong}/>
-                <button onClick={toggleMenu} className='absolute top-[4.4rem] right-[12rem] p-12 text-[2rem] rounded-full bg-[#00000023]'/>                
+                <button className='absolute text-[10px] top-[10.7rem] left-[5.5rem] hover:bg-[#00000013] p-12 rounded-full' onClick={prevSong}/>
+                <button onClick={togglePlayPause} className='absolute top-[17.4rem] right-[12rem] p-12 text-[2rem] rounded-full hover:bg-[#00000013]'/>
+                <button className='absolute text-[10px] top-[10.7rem] right-[5.5rem] hover:bg-[#00000013] p-12 rounded-full' onClick={nextSong}/>
+                <button onClick={toggleMenu} className='absolute top-[4.4rem] right-[12rem] p-12 text-[2rem] rounded-full hover:bg-[#00000013]'/>                
             </div>
         </div>
     </div>
