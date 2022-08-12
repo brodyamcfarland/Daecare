@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+#firebaseConfig
+Firebase.tsx
 # testing
 /coverage
 
