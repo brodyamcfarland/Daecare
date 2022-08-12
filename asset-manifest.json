@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Daecare/static/css/main.3cffeb32.css",
+    "main.js": "/Daecare/static/js/main.0a24f208.js",
+    "static/media/Sample.mp4": "/Daecare/static/media/Sample.9668a976fd6de4763e1b.mp4",
+    "static/media/betta.mp3": "/Daecare/static/media/betta.3df545a8f4a1153a78b1.mp3",
+    "static/media/Test.mp3": "/Daecare/static/media/Test.68d3c533eb4b809b2a02.mp3",
+    "static/media/Motorola.png": "/Daecare/static/media/Motorola.9b07d8f6d5ca3aee0715.png",
+    "static/media/OldDesktop.png": "/Daecare/static/media/OldDesktop.29f0ee4e4f4ab8a04fc7.png",
+    "static/media/DaecareLogo.png": "/Daecare/static/media/DaecareLogo.2a24f0f7497c61821aba.png",
+    "static/media/TESTPIC.JPG": "/Daecare/static/media/TESTPIC.7b5bf9230ff55324337a.JPG",
+    "static/media/ipod.png": "/Daecare/static/media/ipod.e5420e91df93145c70d7.png",
+    "index.html": "/Daecare/index.html",
+    "main.3cffeb32.css.map": "/Daecare/static/css/main.3cffeb32.css.map",
+    "main.0a24f208.js.map": "/Daecare/static/js/main.0a24f208.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3cffeb32.css",
+    "static/js/main.0a24f208.js"
+  ]
+}
