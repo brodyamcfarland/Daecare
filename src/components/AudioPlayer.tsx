@@ -96,11 +96,11 @@ const AudioPlayer = () => {
     }
 
   return (
-    <div className='bg-ipod bg-no-repeat bg-contain mt-3 pt-4 max-w-[30rem] h-[52.5rem] items-center justify-center m-auto rounded-2xl'>
+    <div className='z-50 bg-ipod bg-no-repeat bg-contain bg-center mt-3 pt-4 max-w-[30rem] h-[52.5rem] items-center justify-center m-auto rounded-2xl'>
         <audio ref={audioPlayer} src={currentTrack.mp3} preload="metadata"/>
         {(menuToggle) ? (
             <div className='relative w-[25.5rem] h-[19.5rem] top-5 m-auto'>
-                <div className='flex flex-row gap-3 justify-left pl-[7rem] text-[.7rem]'>
+                <div className='flex flex-row gap-6 justify-left pl-[4rem] text-[.7rem]'>
                     <span className='min-w-[3rem] '>Song</span>
                     <span className='min-w-[5rem] pl-12'>Album</span>
                 </div>

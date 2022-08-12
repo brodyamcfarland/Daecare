@@ -43,8 +43,8 @@ const ChatBox = () => {
     );
 
   return (
-    <div className='bg-motorola bg-no-repeat min-h-screen bg-center'>
-      <div className="relative max-w-[23.3rem] min-h-[28rem] m-auto rounded-2xl top-[20.2rem] right-[1px] select-none">
+    <div className='z-50 bg-motorola bg-no-repeat h-[62rem] bg-center w-[35rem]'>
+      <div className="relative max-w-[23.3rem] min-h-[28rem] m-auto rounded-2xl top-[14.7rem] right-[1px] select-none">
           <div className="border-b-[1px] h-[24rem] max-h-[30rem] overflow-y-auto no-scrollbar">
           {posts.map((post) => (  
                 <ChatMessages

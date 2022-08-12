@@ -8,6 +8,7 @@ module.exports = {
         'motorola': "url('./assets/Motorola.png')",
         'desktop' : "url('./assets/OldDesktop.png')",
         'ipod' : "url('./assets/ipod.png')",
+        'bgtexture' : "url('./assets/bgtexture.png')",
       }
     }
   },

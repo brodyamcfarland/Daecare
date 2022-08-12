@@ -4,8 +4,6 @@ import { videos } from '../components/VideoList';
 
 const VideoPlayer = () => {
 
-
-
   const slideLeft = () => {
     const slider = document.getElementById('slider');
     slider!.scrollLeft = slider!.scrollLeft - 391;
@@ -17,9 +15,9 @@ const VideoPlayer = () => {
   }
 
   return (
-    <div className="w-[51rem] mx-auto">
-        <div className='bg-desktop bg-no-repeat h-[60rem] bg-center items-center justify-center m-auto rounded-2xl'>
-            <div className="w-[24.2rem] relative top-[14.8%] left-[24.6%] rounded-sm">
+    <div className="z-50 w-[50.5rem] scale-[70%] md:scale-[100%] mx-auto">
+        <div className='bg-desktop w-[50.5rem] bg-no-repeat h-[48rem] bg-center items-center justify-center m-auto rounded-2xl'>
+            <div className="z-10 w-[24.2rem] relative top-[6%] left-[24.6%]">
                       <div className='flex flex-row gap-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide' id='slider'>
                         {videos.map((item, id) => (
                             <div key={id} className='w-full h-full'>
