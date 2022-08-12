@@ -2,6 +2,9 @@ import { useState } from 'react';
 import AudioPlayer from './AudioPlayer';
 import ChatBox from './ChatBox';
 import VideoPlayer from './VideoPlayer';
+import { MdOutlineQueueMusic } from 'react-icons/md';
+import { RiCellphoneFill } from 'react-icons/ri';
+import { FaVideo } from 'react-icons/fa';
 
 const Body = () => {
 
@@ -28,21 +31,21 @@ const Body = () => {
   }
 
   return (
-    <div className='flex flex-col text-center items-center min-h-screen'>
-        <div className='flex flex-row gap-8'>
-          <button className='p-3 rounded-full px-5 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
+    <div className='flex flex-col text-center items-center min-h-screen pt-3 select-none'>
+        <div className='flex flex-row gap-14'>
+          <button className='p-auto rounded-full w-14 h-14 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
                   onClick={showAudio}
           >
-          Audio
+          <MdOutlineQueueMusic size={25} className='m-auto'/>
           </button>
-          <button className='p-3 rounded-full px-5 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
+          <button className='rounded-full w-14 h-14 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
                   onClick={showChat}
           >
-          Messenger</button>
-          <button className='p-3 rounded-full px-5 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
+          <RiCellphoneFill size={25} className='m-auto'/></button>
+          <button className='rounded-full w-14 h-14 bg-blue-800 opacity-50 hover:opacity-100 duration-300'
                   onClick={showVideo}
           >
-          Video
+          <FaVideo size={25} className='m-auto'/>
           </button>
         </div>
         {showAudioPlayer && (<AudioPlayer />)}

@@ -15,10 +15,10 @@ const VideoPlayer = () => {
   }
 
   return (
-    <div className="z-50 w-[50.5rem] scale-[70%] md:scale-[100%] mx-auto">
-        <div className='bg-desktop w-[50.5rem] bg-no-repeat h-[48rem] bg-center items-center justify-center m-auto rounded-2xl'>
+    <div className="absolute top-0 sm:top-[2rem] md:top-[10rem] z-50 w-[50.5rem] scale-[45%] sm:scale-[60%] md:scale-[100%]">
+        <div className='bg-desktop z-50 w-[50.5rem] bg-no-repeat h-[48rem] bg-center items-center justify-center m-auto rounded-2xl'>
             <div className="z-10 w-[24.2rem] relative top-[6%] left-[24.6%]">
-                      <div className='flex flex-row gap-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide' id='slider'>
+                      <div className='z-10 flex flex-row gap-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide' id='slider'>
                         {videos.map((item, id) => (
                             <div key={id} className='w-full h-full'>
                               <ReactPlayer
